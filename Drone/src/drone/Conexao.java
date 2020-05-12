@@ -5,22 +5,27 @@
  */
 package drone;
 
-import java.util.ArrayList;
-import java.util.List;
-import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
+
 import javax.swing.JOptionPane;
 import jpl.Query;
 
 /**
- *
- * @author andre
+ *@author andre
+ *this class connect the java aplication whit prolog server, for that we use the library jpl.jar
  */
-public class Conexao {
-    
-    
-   
 
+public class Conexao {
+
+        
+    /**
+     *@param a[]
+     * sensors:send a binary array corresponding to the four drone's sensor
+     * example a[] = [0,1,1,0] -> sensor 2 and 3 is colliding 
+     *@return result[]
+     * Return the coordinates from new drone's position
+     */
+     
+    
     public double[] conectar(int[] a) {
 
         try {
@@ -38,17 +43,10 @@ public class Conexao {
             result[0] = Double.parseDouble(saida[7]);
             result[1] = Double.parseDouble(saida[13]);
             
-               /* System.out.println(
-                        saida[7]+" "+saida[13]
-                );*/
-            
                con.close();
                 return result;
         
             
-            //if (executar.hasSolution()) {
-            //  System.out.println("A soma é: " + executar.oneSolution().get("C").toString());
-            //}
         } catch (NumberFormatException e) {
             
             

@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Drone.jar" size="1784555" download="eager" />
+    <jar href="Drone.jar" size="1784072" download="eager" />
     <jar href="lib\jpl.jar" size="29453" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Drone" >

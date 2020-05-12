@@ -8,19 +8,27 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import javax.swing.JOptionPane;
+
+
+/**
+ * @author andre
+ * Class conntroler from javaFX, here we set drone's configs
+ */
+
+/**
+ * @Attributes
+ * Rectangle: scenario obstacles, orange obstacle represents the destiny
+ * Line s: are drone's sensors
+ */
 
 public class FXMLDocumentController {
 
@@ -93,14 +101,16 @@ public class FXMLDocumentController {
     int tempoAni = 1;
     int controlex = 1, controley = 1;
 
+    /** 
+     * @param figuras rectangles
+     * implements the dragging of the rectangles from scenario
+     */
+    
     private void arrastarItens(final Shape figuras) {
-        figuras.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                x = figuras.getLayoutX() - event.getSceneX();
-                y = figuras.getLayoutY() - event.getSceneY();
-                figuras.setCursor(Cursor.CROSSHAIR);
-            }
+        figuras.setOnMousePressed((MouseEvent event) -> {
+            x = figuras.getLayoutX() - event.getSceneX();
+            y = figuras.getLayoutY() - event.getSceneY();
+            figuras.setCursor(Cursor.CROSSHAIR);
         });
         figuras.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
@@ -117,7 +127,10 @@ public class FXMLDocumentController {
         });
 
     }
-
+    
+    /**
+     *complements arrastarItens
+     */
     private void criafiguras() {
         List<Shape> obstaculos = new ArrayList<>();
         obstaculos.add(barreira);
@@ -137,6 +150,10 @@ public class FXMLDocumentController {
 
     }
 
+    /**
+     * drone's animation
+     */
+    
     private void Chegada() {
 
         if (objetivo()) {
@@ -216,6 +233,11 @@ public class FXMLDocumentController {
         criafiguras();
     }
 
+    /**
+     * drones's animation
+     * @param event 
+     */
+    
     @FXML
     void movimento(MouseEvent event) {
 
@@ -571,6 +593,11 @@ public class FXMLDocumentController {
         }
     }
 
+    /**
+     * test if drone is lolliding with scenary elements
+     * @return boolean
+     */
+    
     private boolean colisao() {
 
         int controle = 0;
@@ -744,6 +771,11 @@ public class FXMLDocumentController {
 
     }
 
+    /**
+     * @return booelan
+     * test if drone is in final destiny
+     */
+    
     private boolean objetivo() {
         if (Shape.intersect(s1, chegada).getBoundsInLocal().isEmpty() == false
                 || Shape.intersect(s2, chegada).getBoundsInLocal().isEmpty() == false
